@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date & Time</title>
+    <style>
+        .day{
+            color: blueviolet;
+            font-size: 24px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+        .time{
+            color: blueviolet;
+            font-size: 24px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="day"></div><hr>
+    <div class="time"></div>
+    <script>
+        let date = new Date();
+        let day = date.getDay();
+        let weeks = ["Sunday","Monday","Tuesday","Wednesday","Thusday","Friday","Satarday",];
+        let today = weeks[day];
+        document.querySelector(".day").innerHTML = `Today is : ${today}`;
+
+        let hour = date.getHours();
+        let min = date.getMinutes();
+        let sec = date.getSeconds();
+
+        let prepan = (hour >= 12) ? "PM" : "AM";
+        let nexHour = ( hour >= 12 ) ? hour - 12 : hour;
+
+        if(hour === 0 && prepan === "PM"){
+            if(min === 0 && sec === 0){
+                hour = 12;
+                prepan = "Noon";
+            }else{
+                hour = 12;
+                prepan = "PM";
+            }
+        }
+
+        if(hour === 0 && prepan === "AM"){
+            if(min === 0 && sec === 0){
+                hour = 12;
+                prepan = "midnight";
+            }else{
+                hour = 12;
+                prepan = "AM";
+            }
+        }
+        document.querySelector(".time").innerHTML = `Current Time is : ${hour} ${prepan} : ${min} :${sec}`;
+    </script>
+</body>
+</html>
